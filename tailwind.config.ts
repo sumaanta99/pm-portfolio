@@ -3,7 +3,6 @@ import type { Config } from "tailwindcss";
 const config: Config = {
   darkMode: "class",
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -18,6 +17,9 @@ const config: Config = {
         line: "rgb(var(--line) / <alpha-value>)",
         accent: "rgb(var(--accent) / <alpha-value>)",
         accent2: "rgb(var(--accent2) / <alpha-value>)",
+        title: "rgb(var(--title) / <alpha-value>)",
+        petal: "rgb(var(--petal) / <alpha-value>)",
+        leaf: "rgb(var(--leaf) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
@@ -29,25 +31,6 @@ const config: Config = {
       boxShadow: {
         glow: "0 0 60px -15px rgb(var(--accent) / 0.5)",
         lift: "0 24px 50px -20px rgb(0 0 0 / 0.45)",
-      },
-      keyframes: {
-        "gradient-pan": {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        "pulse-soft": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.4" },
-        },
-      },
-      animation: {
-        "gradient-pan": "gradient-pan 8s ease infinite",
-        float: "float 6s ease-in-out infinite",
-        "pulse-soft": "pulse-soft 2s ease-in-out infinite",
       },
     },
   },

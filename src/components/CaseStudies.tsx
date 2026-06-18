@@ -30,7 +30,7 @@ export function CaseStudies() {
               className="group relative flex h-full flex-col overflow-hidden rounded-4xl border border-line bg-surface/60 p-6 sm:p-8 transition-colors hover:border-accent/40"
             >
               <div
-                className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full opacity-25 blur-3xl transition-opacity duration-500 group-hover:opacity-50"
+                className="pointer-events-none absolute -right-20 -top-20 hidden h-56 w-56 rounded-full opacity-25 blur-3xl transition-opacity duration-500 group-hover:opacity-50 md:block"
                 style={{ background: `rgb(${p.accent})` }}
               />
 

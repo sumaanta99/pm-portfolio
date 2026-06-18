@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 
-const ACCENT = "124 108 255"; // Port indigo-violet
+const ACCENT = "176 30 38";
 
 /* ------------------------------------------------------------------ */
 /* Small building blocks                                              */
@@ -152,7 +152,7 @@ function FlowNode({
   return (
     <div className={`relative rounded-2xl border ${ring} p-4`}>
       <span className="font-display text-xs font-bold text-accent">{n}</span>
-      <h4 className="mt-1 text-sm font-semibold text-ink">{title}</h4>
+      <h4 className="mt-1 text-sm font-semibold">{title}</h4>
       <p className="mt-1 text-xs leading-relaxed text-muted">{desc}</p>
     </div>
   );
@@ -348,7 +348,7 @@ export function CaseStudy() {
           ].map(([t, d], i) => (
             <Reveal key={t} direction="up" delay={0.06 * i}>
               <div className="h-full rounded-3xl border border-line bg-surface/40 p-6">
-                <h4 className="text-sm font-semibold text-ink">{t}</h4>
+                <h4 className="text-sm font-semibold">{t}</h4>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{d}</p>
               </div>
             </Reveal>
@@ -362,7 +362,7 @@ export function CaseStudy() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
               Problem statement
             </p>
-            <p className="mt-2 font-display text-lg font-medium text-ink sm:text-xl">
+            <p className="mt-2 font-display text-lg font-medium sm:text-xl">
               How might we let users make warm introductions between their contacts{" "}
               <span style={{ color: `rgb(${ACCENT})` }}>
                 without either party&apos;s identity being exposed without their explicit
@@ -446,7 +446,7 @@ export function CaseStudy() {
           {personas.map((p, i) => (
             <Reveal key={p.name} direction="up" delay={0.06 * i}>
               <div className="h-full rounded-3xl border border-line bg-surface/40 p-6">
-                <h4 className="font-display text-lg font-bold text-ink">{p.name}</h4>
+                <h4 className="font-display text-lg font-bold">{p.name}</h4>
                 <p className="mt-0.5 text-xs font-medium" style={{ color: `rgb(${ACCENT})` }}>
                   {p.sub}
                 </p>
@@ -475,7 +475,7 @@ export function CaseStudy() {
                   >
                     {i + 1}
                   </span>
-                  <h4 className="text-base font-semibold text-ink">{d.t}</h4>
+                  <h4 className="text-base font-semibold">{d.t}</h4>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{d.d}</p>
                 <p className="mt-4 border-t border-line pt-3 text-xs text-muted">
@@ -620,7 +620,7 @@ export function CaseStudy() {
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           <Reveal direction="up" delay={0.06}>
             <div className="h-full rounded-3xl border border-line bg-surface/40 p-6">
-              <h4 className="text-sm font-semibold text-ink">Acceptance criteria</h4>
+              <h4 className="text-sm font-semibold">Acceptance criteria</h4>
               <ul className="mt-4 space-y-2.5">
                 {acceptance.map((a) => (
                   <li key={a} className="flex gap-2.5 text-sm text-muted">
@@ -635,7 +635,7 @@ export function CaseStudy() {
           {/* edge cases */}
           <Reveal direction="up" delay={0.12}>
             <div className="h-full rounded-3xl border border-line bg-surface/40 p-6">
-              <h4 className="text-sm font-semibold text-ink">Edge cases handled</h4>
+              <h4 className="text-sm font-semibold">Edge cases handled</h4>
               <ul className="mt-4 space-y-3">
                 {edges.map(([e, b]) => (
                   <li key={e} className="text-sm">
@@ -658,7 +658,7 @@ export function CaseStudy() {
               className="h-full rounded-3xl border p-6"
               style={{ borderColor: `rgb(${ACCENT} / 0.4)`, background: `rgb(${ACCENT} / 0.07)` }}
             >
-              <h4 className="text-sm font-semibold text-ink">I owned</h4>
+              <h4 className="text-sm font-semibold">I owned</h4>
               <ul className="mt-3 space-y-2 text-sm text-muted">
                 <li>The consent-first reframing</li>
                 <li>The permission-gating decision</li>
@@ -669,7 +669,7 @@ export function CaseStudy() {
           </Reveal>
           <Reveal direction="up" delay={0.08}>
             <div className="h-full rounded-3xl border border-line bg-surface/40 p-6">
-              <h4 className="text-sm font-semibold text-ink">The team owned</h4>
+              <h4 className="text-sm font-semibold">The team owned</h4>
               <ul className="mt-3 space-y-2 text-sm text-muted">
                 <li>Cryptographic bundle generation</li>
                 <li>Client implementation across platforms</li>
@@ -712,7 +712,7 @@ export function CaseStudy() {
           ].map(([t, d], i) => (
             <Reveal key={t} direction="up" delay={0.05 * i}>
               <div className="h-full rounded-3xl border border-line bg-surface/40 p-6">
-                <h4 className="text-sm font-semibold text-ink">{t}</h4>
+                <h4 className="text-sm font-semibold">{t}</h4>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{d}</p>
               </div>
             </Reveal>

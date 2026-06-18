@@ -40,7 +40,7 @@ export function ProjectModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-bg/70 p-3 backdrop-blur-md sm:p-8"
+          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-bg/95 p-3 sm:bg-bg/70 sm:p-8 sm:backdrop-blur-md"
         >
           <motion.div
             layout
@@ -60,7 +60,7 @@ export function ProjectModal({
               }}
             >
               <div
-                className="absolute -right-12 -top-12 h-48 w-48 rounded-full opacity-40 blur-3xl"
+                className="absolute -right-12 -top-12 hidden h-48 w-48 rounded-full opacity-40 blur-3xl md:block"
                 style={{ background: `rgb(${project.accent})` }}
               />
               <button

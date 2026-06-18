@@ -6,6 +6,7 @@ import { projects, type Project } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ProjectModal } from "@/components/projects/ProjectModal";
+import { useMobileLightweight } from "@/hooks/useMobileLightweight";
 
 const filters = ["All", "Product Work", "Side Projects", "Open Source"] as const;
 type Filter = (typeof filters)[number];
@@ -14,6 +15,7 @@ const selectedWorkProjects = projects.filter((p) => !p.caseStudyHref);
 export function Projects() {
   const [filter, setFilter] = useState<Filter>("All");
   const [active, setActive] = useState<Project | null>(null);
+  const lightweight = useMobileLightweight();
 
   const visible = useMemo(
     () =>
@@ -22,6 +24,9 @@ export function Projects() {
         : selectedWorkProjects.filter((p) => p.category === filter),
     [filter]
   );
+
+  const gridClass =
+    "mt-9 grid gap-5 sm:mt-10 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3";
 
   return (
     <section
@@ -34,7 +39,6 @@ export function Projects() {
         description="Each card opens a full Problem → Research → Solution → Impact breakdown with the metrics that mattered."
       />
 
-      {/* filters */}
       <div className="mt-9 flex flex-wrap gap-2 sm:mt-10">
         {filters.map((f) => {
           const isActive = filter === f;
@@ -47,13 +51,16 @@ export function Projects() {
               <span className={isActive ? "text-white" : "text-muted hover:text-ink"}>
                 {f}
               </span>
-              {isActive && (
-                <motion.span
-                  layoutId="filter-pill"
-                  className="absolute inset-0 -z-10 rounded-full bg-accent shadow-glow"
-                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                />
-              )}
+              {isActive &&
+                (lightweight ? (
+                  <span className="absolute inset-0 -z-10 rounded-full bg-accent shadow-glow" />
+                ) : (
+                  <motion.span
+                    layoutId="filter-pill"
+                    className="absolute inset-0 -z-10 rounded-full bg-accent shadow-glow"
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                  />
+                ))}
               {!isActive && (
                 <span className="absolute inset-0 -z-10 rounded-full border border-line" />
               )}
@@ -62,19 +69,23 @@ export function Projects() {
         })}
       </div>
 
-      {/* grid */}
-      <LayoutGroup>
-        <motion.div
-          layout
-          className="mt-9 grid gap-5 sm:mt-10 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          <AnimatePresence mode="popLayout">
-            {visible.map((p) => (
-              <ProjectCard key={p.id} project={p} onOpen={() => setActive(p)} />
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      </LayoutGroup>
+      {lightweight ? (
+        <div className={gridClass}>
+          {visible.map((p) => (
+            <ProjectCard key={p.id} project={p} onOpen={() => setActive(p)} />
+          ))}
+        </div>
+      ) : (
+        <LayoutGroup>
+          <motion.div layout className={gridClass}>
+            <AnimatePresence mode="popLayout">
+              {visible.map((p) => (
+                <ProjectCard key={p.id} project={p} onOpen={() => setActive(p)} />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </LayoutGroup>
+      )}
 
       <ProjectModal project={active} onClose={() => setActive(null)} />
     </section>

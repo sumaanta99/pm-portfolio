@@ -9,7 +9,7 @@ export function Shelf({ books }: { books: ShelfBook[] }) {
     return (
       <Reveal direction="up" delay={0.1}>
         <div className="mt-10 flex flex-col items-center justify-center rounded-4xl border border-dashed border-line bg-surface/40 px-6 py-16 text-center sm:py-20">
-          <p className="font-display text-lg font-semibold text-ink sm:text-xl">
+          <p className="font-display text-lg font-semibold sm:text-xl">
             Nothing on the shelf right now.
           </p>
           <p className="mt-2 text-sm text-muted">

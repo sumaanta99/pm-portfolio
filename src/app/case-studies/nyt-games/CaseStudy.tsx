@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 
-const ACCENT = "106 170 100"; // Wordle "correct" green
+const ACCENT = "122 124 74"; // dark olive
 
 /* ------------------------------------------------------------------ */
 /* Building blocks                                                     */
@@ -87,7 +87,7 @@ function PullQuote({ children }: { children: React.ReactNode }) {
   return (
     <Reveal direction="up" delay={0.1}>
       <blockquote className="mt-8 border-l-2 pl-6" style={{ borderColor: `rgb(${ACCENT})` }}>
-        <p className="font-display text-xl font-medium leading-snug text-ink sm:text-2xl">
+        <p className="font-display text-xl font-medium leading-snug sm:text-2xl">
           {children}
         </p>
       </blockquote>

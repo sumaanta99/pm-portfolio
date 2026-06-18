@@ -12,13 +12,11 @@ export function AnimatedCounter({
   prefix = "",
   suffix = "",
   duration = 1.6,
-  className,
 }: {
   value: number;
   prefix?: string;
   suffix?: string;
   duration?: number;
-  className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
@@ -44,7 +42,7 @@ export function AnimatedCounter({
     : display.toFixed(1);
 
   return (
-    <span ref={ref} className={className}>
+    <span ref={ref}>
       {prefix}
       {formatted}
       {suffix}

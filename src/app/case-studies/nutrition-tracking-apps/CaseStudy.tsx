@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 
-const ACCENT = "59 130 246";
+const ACCENT = "168 130 120";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (

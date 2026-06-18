@@ -19,8 +19,8 @@ export function Blog() {
 
       <Reveal direction="up" delay={0.1}>
         <div className="group relative mt-9 overflow-hidden rounded-3xl border border-line bg-surface/60 p-5 sm:mt-10 sm:rounded-4xl sm:p-10">
-          <div className="pointer-events-none absolute -right-10 -top-12 h-44 w-44 rounded-full bg-accent/15 blur-3xl transition-transform duration-700 group-hover:scale-125" />
-          <div className="pointer-events-none absolute -bottom-14 -left-10 h-44 w-44 rounded-full bg-accent2/15 blur-3xl transition-transform duration-700 group-hover:scale-125" />
+          <div className="pointer-events-none absolute -right-10 -top-12 hidden h-44 w-44 rounded-full bg-accent/15 blur-3xl transition-transform duration-700 group-hover:scale-125 md:block" />
+          <div className="pointer-events-none absolute -bottom-14 -left-10 hidden h-44 w-44 rounded-full bg-accent2/15 blur-3xl transition-transform duration-700 group-hover:scale-125 md:block" />
 
           <div className="relative flex flex-col gap-6 sm:gap-8 md:flex-row md:items-center md:justify-between">
             <div>

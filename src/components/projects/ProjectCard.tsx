@@ -5,10 +5,10 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-  useReducedMotion,
 } from "framer-motion";
 import { useRef } from "react";
 import type { Project } from "@/lib/data";
+import { useMobileLightweight } from "@/hooks/useMobileLightweight";
 
 export function ProjectCard({
   project,
@@ -17,7 +17,7 @@ export function ProjectCard({
   project: Project;
   onOpen: () => void;
 }) {
-  const reduce = useReducedMotion();
+  const lightweight = useMobileLightweight();
   const ref = useRef<HTMLButtonElement>(null);
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
@@ -31,7 +31,7 @@ export function ProjectCard({
   });
 
   const onMove = (e: React.MouseEvent) => {
-    if (reduce || !ref.current) return;
+    if (lightweight || !ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     mx.set((e.clientX - rect.left) / rect.width);
     my.set((e.clientY - rect.top) / rect.height);
@@ -41,23 +41,10 @@ export function ProjectCard({
     my.set(0.5);
   };
 
-  return (
-    <motion.button
-      ref={ref}
-      layout
-      onClick={onOpen}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      style={{ rotateX: rx, rotateY: ry, transformPerspective: 900 }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-4xl border border-line bg-surface/60 p-5 text-left will-change-transform sm:p-7"
-    >
-      {/* glow following accent */}
+  const cardContent = (
+    <>
       <div
-        className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-30 blur-3xl transition-all duration-500 group-hover:opacity-60"
+        className="pointer-events-none absolute -right-16 -top-16 hidden h-44 w-44 rounded-full opacity-30 blur-3xl transition-all duration-500 group-hover:opacity-60 md:block"
         style={{ background: `rgb(${project.accent})` }}
       />
 
@@ -90,7 +77,6 @@ export function ProjectCard({
         {project.summary}
       </p>
 
-      {/* metrics */}
       <div className="relative mt-5 flex flex-wrap gap-x-5 gap-y-2 sm:mt-6 sm:gap-x-6">
         {project.metrics.slice(0, 3).map((m) => (
           <div key={m.label}>
@@ -118,16 +104,44 @@ export function ProjectCard({
         ))}
       </div>
 
-      {/* hover reveal cue */}
-      <div className="relative mt-5 flex items-center gap-2 text-sm font-medium text-ink opacity-0 transition-all duration-300 group-hover:opacity-100">
+      <div className="relative mt-5 flex items-center gap-2 text-sm font-medium text-ink opacity-100 transition-all duration-300 md:opacity-0 md:group-hover:opacity-100">
         <span>More about this project</span>
-        <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        <span className="transition-transform duration-300 md:group-hover:translate-x-1">→</span>
       </div>
 
       <div
         className="pointer-events-none absolute inset-0 rounded-4xl border opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{ borderColor: `rgb(${project.accent} / 0.5)` }}
       />
+    </>
+  );
+
+  if (lightweight) {
+    return (
+      <button
+        onClick={onOpen}
+        className="group relative flex h-full flex-col overflow-hidden rounded-4xl border border-line bg-surface/60 p-5 text-left sm:p-7"
+      >
+        {cardContent}
+      </button>
+    );
+  }
+
+  return (
+    <motion.button
+      ref={ref}
+      layout
+      onClick={onOpen}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      style={{ rotateX: rx, rotateY: ry, transformPerspective: 900 }}
+      className="group relative flex h-full flex-col overflow-hidden rounded-4xl border border-line bg-surface/60 p-5 text-left will-change-transform sm:p-7"
+    >
+      {cardContent}
     </motion.button>
   );
 }

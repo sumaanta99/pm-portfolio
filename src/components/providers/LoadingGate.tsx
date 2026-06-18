@@ -3,11 +3,27 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 
+const MOBILE_QUERY = "(max-width: 767px), (pointer: coarse)";
+
 export function LoadingGate({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [isReady, setIsReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const media = window.matchMedia(MOBILE_QUERY);
+    const apply = () => setIsMobile(media.matches);
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) {
+      setIsReady(true);
+      return;
+    }
+
     let frameId = 0;
     let timeoutId = 0;
     let observer: MutationObserver | null = null;
@@ -33,8 +49,6 @@ export function LoadingGate({ children }: { children: ReactNode }) {
           }
         });
         observer.observe(document.body, { childList: true, subtree: true });
-
-        // Safety net so the app never gets blocked by loader.
         timeoutId = window.setTimeout(markReady, 3000);
       }
     }
@@ -44,16 +58,18 @@ export function LoadingGate({ children }: { children: ReactNode }) {
       observer?.disconnect();
       if (frameId) window.cancelAnimationFrame(frameId);
     };
-  }, [pathname]);
+  }, [pathname, isMobile]);
 
   return (
     <>
-      <div
-        className={`app-loader ${isReady ? "app-loader-hidden" : ""}`}
-        aria-hidden={isReady}
-      >
-        <div className="app-loader-spinner" />
-      </div>
+      {!isMobile && (
+        <div
+          className={`app-loader ${isReady ? "app-loader-hidden" : ""}`}
+          aria-hidden={isReady}
+        >
+          <div className="app-loader-spinner" />
+        </div>
+      )}
       <div className={`app-shell ${isReady ? "app-shell-ready" : ""}`}>
         {children}
       </div>

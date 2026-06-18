@@ -43,7 +43,7 @@ export function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-      className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-4 sm:pt-4"
+      className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-4 sm:pt-4"
     >
       <nav
         className={`flex w-full max-w-5xl items-center justify-between rounded-2xl px-2.5 py-2 transition-all duration-500 sm:rounded-full sm:px-3 sm:py-2.5 ${
@@ -129,7 +129,7 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 top-0 z-40 flex flex-col bg-bg/95 px-5 pb-8 pt-24 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 top-0 z-40 flex flex-col bg-bg px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(6rem,env(safe-area-inset-top))] md:hidden"
           >
             <ul className="flex flex-col gap-2">
               {navLinks.map((link, i) => (

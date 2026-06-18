@@ -44,7 +44,7 @@ export const projects: Project[] = [
     subtitle: "Trust filter product analysis · Marketplace",
     category: "Analysis",
     year: "2026",
-    accent: "236 72 153",
+    accent: "176 30 38",
     summary:
       "How Rapido can reduce women riders' booking anxiety by surfacing trust signals from existing ratings data instead of waiting years for supply-side expansion.",
     tags: ["Marketplace", "Trust", "Mobility", "Conversion"],
@@ -69,7 +69,7 @@ export const projects: Project[] = [
     subtitle: "Subscription strategy teardown · Analysis",
     category: "Analysis",
     year: "2026",
-    accent: "106 170 100",
+    accent: "122 124 74",
     summary:
       "A practitioner's teardown of how The New York Times turned a daily puzzle habit into a subscription-retention machine and what any free-to-play word-games studio should copy or deliberately ignore.",
     tags: ["Strategy", "Subscription", "Word Games", "Retention"],
@@ -94,7 +94,7 @@ export const projects: Project[] = [
     subtitle: "Food tracking experience comparison · Analysis",
     category: "Analysis",
     year: "2026",
-    accent: "59 130 246",
+    accent: "168 130 120",
     summary:
       "A first-person product essay on why people keep using nutrition apps: Napkin Math for joy, Healthify for guidance, and MyFitnessPal for discipline.",
     tags: ["Nutrition", "User Behavior", "Retention", "Mobile UX"],
@@ -119,7 +119,7 @@ export const projects: Project[] = [
     subtitle: "Secure messaging platform · 0→1",
     category: "Product Work",
     year: "2023–25",
-    accent: "124 108 255",
+    accent: "176 30 38",
     summary:
       "Joined pre-launch as Founding Engineer turned PM. Owned end-to-end product definition and delivery of a secure messaging app on Android & iOS, scaling to 14,000+ users.",
     tags: ["0→1", "Consumer", "Mobile", "Messaging"],
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     subtitle: "Secure messaging platform · 0→1",
     category: "Product Work",
     year: "2023–25",
-    accent: "124 108 255",
+    accent: "176 30 38",
     summary:
       "Joined pre-launch and owned end-to-end product definition and delivery of a secure messaging platform on Android & iOS, scaling to 14,000+ active users with zero critical launch failures.",
     tags: ["0→1", "Consumer", "Mobile", "Messaging"],
@@ -168,7 +168,7 @@ export const projects: Project[] = [
     subtitle: "Checkout, auth & tele-consult · Growth",
     category: "Product Work",
     year: "2022–23",
-    accent: "56 224 201",
+    accent: "148 114 104",
     summary:
       "Rebuilt purchase flows across three brands in a unified codebase and shipped mobile-native tele-consultation, lifting conversion and retention while cutting code duplication.",
     tags: ["Growth", "Checkout", "Healthcare", "A/B Testing"],
@@ -203,7 +203,7 @@ export const projects: Project[] = [
     subtitle: "Server-driven form engine · B2B SaaS",
     category: "Product Work",
     year: "2025–26",
-    accent: "245 158 66",
+    accent: "198 160 96",
     summary:
       "Translated ambiguous logistics requirements into a JSON-config-driven form engine, owning the DockAi exception workflow end-to-end as Product Owner.",
     tags: ["B2B SaaS", "Logistics", "Config-driven", "AI-native"],
@@ -228,7 +228,7 @@ export const projects: Project[] = [
     category: "Side Projects",
     year: "2025",
     status: "Live",
-    accent: "255 138 168",
+    accent: "184 92 96",
     summary:
       "A live cage-free home cat boarding business in Indiranagar, Bangalore — built the brand, landing site and booking funnel end to end. Real customers, real reviews.",
     tags: ["0→1", "Brand", "Marketing", "Live business"],
@@ -260,7 +260,7 @@ export const projects: Project[] = [
     category: "Side Projects",
     year: "2026",
     status: "In progress",
-    accent: "96 165 250",
+    accent: "122 124 74",
     summary:
       "A two-sided marketplace connecting dog owners with vetted walkers — currently in active build, applying marketplace liquidity and trust patterns from the ground up.",
     tags: ["Marketplace", "0→1", "Two-sided", "In progress"],
@@ -289,7 +289,7 @@ export const projects: Project[] = [
     subtitle: "Permissioned data-sharing SDK",
     category: "Open Source",
     year: "2026",
-    accent: "168 85 247",
+    accent: "158 64 70",
     summary:
       "A headless TypeScript SDK for approval-based, multi-party data sharing flows with cryptographic guarantees. Published on npm.",
     tags: ["Open Source", "TypeScript", "SDK", "Security"],
@@ -317,7 +317,7 @@ export const projects: Project[] = [
     subtitle: "Should I watch this? · Chrome extension",
     category: "Open Source",
     year: "2026",
-    accent: "250 204 21",
+    accent: "210 178 104",
     summary:
       "A Manifest V3 Chrome extension that shows a compact, spoiler-free verdict on hover across Netflix, Prime, Hotstar and YouTube — combining IMDb, RT, Metacritic and Reddit signals.",
     tags: ["Chrome Extension", "TypeScript", "Consumer", "AI signals"],
@@ -493,8 +493,8 @@ export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Work", href: "#work" },
   { label: "Case Studies", href: "#case-studies" },
-  { label: "Blog", href: "#blog" },
   { label: "Skills", href: "#skills" },
+  { label: "Blog", href: "#blog" },
   { label: "Shelf", href: "#shelf" },
   { label: "Contact", href: "#contact" },
 ];

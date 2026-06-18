@@ -8,7 +8,7 @@ export function OnShelf() {
       id="shelf"
       className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24 md:py-32"
     >
-      <div className="pointer-events-none absolute right-1/2 top-24 -z-10 h-64 w-64 translate-x-1/2 rounded-full bg-accent2/10 blur-[90px] sm:h-80 sm:w-80 sm:blur-[120px]" />
+      <div className="pointer-events-none absolute right-1/2 top-24 -z-10 hidden h-64 w-64 translate-x-1/2 rounded-full bg-accent2/10 blur-[90px] md:block md:h-80 md:w-80 md:blur-[120px]" />
 
       <SectionHeading
         eyebrow="Reading"

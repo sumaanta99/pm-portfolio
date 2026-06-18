@@ -3,10 +3,10 @@
 import {
   motion,
   useMotionValue,
-  useReducedMotion,
   useSpring,
 } from "framer-motion";
 import { useRef, type ReactNode } from "react";
+import { useMobileLightweight } from "@/hooks/useMobileLightweight";
 
 type Props = {
   children: ReactNode;
@@ -28,14 +28,47 @@ export function MagneticButton({
   ariaLabel,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const lightweight = useMobileLightweight();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const sx = useSpring(x, { stiffness: 200, damping: 15 });
   const sy = useSpring(y, { stiffness: 200, damping: 15 });
 
+  const base =
+    "relative inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium tracking-wide transition-colors duration-300 sm:px-7 sm:py-3.5";
+  const styles =
+    variant === "primary"
+      ? "bg-accent text-white shadow-glow hover:bg-accent/90"
+      : "border border-line bg-surface/40 text-ink hover:border-accent/60";
+
+  if (lightweight) {
+    if (href) {
+      return (
+        <a
+          href={href}
+          aria-label={ariaLabel}
+          target={href.startsWith("http") ? "_blank" : undefined}
+          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+          className={`${base} ${styles} ${className}`}
+        >
+          {children}
+        </a>
+      );
+    }
+    return (
+      <button
+        type="button"
+        aria-label={ariaLabel}
+        onClick={onClick}
+        className={`${base} ${styles} ${className}`}
+      >
+        {children}
+      </button>
+    );
+  }
+
   const handleMove = (e: React.MouseEvent) => {
-    if (reduce || !ref.current) return;
+    if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const relX = e.clientX - (rect.left + rect.width / 2);
     const relY = e.clientY - (rect.top + rect.height / 2);
@@ -48,18 +81,11 @@ export function MagneticButton({
     y.set(0);
   };
 
-  const base =
-    "relative inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium tracking-wide transition-colors duration-300 will-change-transform sm:px-7 sm:py-3.5";
-  const styles =
-    variant === "primary"
-      ? "bg-accent text-white shadow-glow hover:bg-accent/90"
-      : "border border-line bg-surface/40 text-ink hover:border-accent/60";
-
   const inner = (
     <motion.span
       className="relative z-10 inline-flex items-center gap-2"
-      whileHover={reduce ? undefined : { scale: 1.04 }}
-      whileTap={reduce ? undefined : { scale: 0.97 }}
+      whileHover={{ scale: 1.04 }}
+      whileTap={{ scale: 0.97 }}
     >
       {children}
     </motion.span>
@@ -71,7 +97,7 @@ export function MagneticButton({
       aria-label={ariaLabel}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className={`${base} ${styles} ${className}`}
+      className={`${base} ${styles} will-change-transform ${className}`}
     >
       {inner}
     </a>
@@ -80,7 +106,7 @@ export function MagneticButton({
       type="button"
       aria-label={ariaLabel}
       onClick={onClick}
-      className={`${base} ${styles} ${className}`}
+      className={`${base} ${styles} will-change-transform ${className}`}
     >
       {inner}
     </button>

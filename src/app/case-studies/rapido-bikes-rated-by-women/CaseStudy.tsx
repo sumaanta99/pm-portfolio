@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 
-const ACCENT = "236 72 153";
+const ACCENT = "176 30 38";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (

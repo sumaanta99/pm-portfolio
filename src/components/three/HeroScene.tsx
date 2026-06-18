@@ -1,103 +1,58 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, MeshDistortMaterial, Icosahedron } from "@react-three/drei";
-import { useRef, useMemo, Suspense } from "react";
-import * as THREE from "three";
-import { useReducedMotion } from "framer-motion";
+import { Suspense, useEffect, useMemo } from "react";
+import { Canvas } from "@react-three/fiber";
+import { useAnimations, useGLTF } from "@react-three/drei";
+import { clone } from "three/examples/jsm/utils/SkeletonUtils.js";
 
-function Blob() {
-  const mesh = useRef<THREE.Mesh>(null);
-  useFrame((state) => {
-    if (!mesh.current) return;
-    const t = state.clock.getElapsedTime();
-    mesh.current.rotation.x = t * 0.12;
-    mesh.current.rotation.y = t * 0.18;
-    // gentle parallax toward pointer
-    mesh.current.position.x = THREE.MathUtils.lerp(
-      mesh.current.position.x,
-      state.pointer.x * 0.4,
-      0.04
-    );
-    mesh.current.position.y = THREE.MathUtils.lerp(
-      mesh.current.position.y,
-      state.pointer.y * 0.3,
-      0.04
-    );
-  });
+const MODEL_URL = "https://threejs.org/examples/models/gltf/Michelle.glb";
+
+function MichelleModel() {
+  const { scene, animations } = useGLTF(MODEL_URL);
+  const clonedScene = useMemo(() => clone(scene), [scene]);
+  const { actions } = useAnimations(animations, clonedScene);
+
+  useEffect(() => {
+    const clip = animations[0];
+    if (!clip) return;
+
+    const action = actions[clip.name];
+    action?.reset().fadeIn(0.35).play();
+
+    return () => {
+      action?.fadeOut(0.2);
+    };
+  }, [actions, animations]);
 
   return (
-    <Float speed={1.4} rotationIntensity={0.6} floatIntensity={1.2}>
-      <Icosahedron ref={mesh} args={[1.5, 12]}>
-        <MeshDistortMaterial
-          color="#7c6cff"
-          emissive="#38e0c9"
-          emissiveIntensity={0.12}
-          roughness={0.18}
-          metalness={0.55}
-          distort={0.42}
-          speed={1.6}
-        />
-      </Icosahedron>
-    </Float>
+    <primitive
+      object={clonedScene}
+      position={[0, -1.55, 0]}
+      rotation={[0, -0.55, 0]}
+      scale={1.65}
+    />
   );
 }
 
-function Particles({ count = 90 }: { count?: number }) {
-  const points = useRef<THREE.Points>(null);
-  const positions = useMemo(() => {
-    const arr = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 12;
-      arr[i * 3 + 1] = (Math.random() - 0.5) * 12;
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 8;
-    }
-    return arr;
-  }, [count]);
-
-  useFrame((state) => {
-    if (points.current) {
-      points.current.rotation.y = state.clock.getElapsedTime() * 0.04;
-    }
-  });
-
+export function HeroScene() {
   return (
-    <points ref={points}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={count}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.06}
-        color="#7c6cff"
-        transparent
-        opacity={0.6}
-        sizeAttenuation
-      />
-    </points>
-  );
-}
-
-export default function HeroScene() {
-  const reduce = useReducedMotion();
-  return (
-    <Canvas
-      camera={{ position: [0, 0, 5], fov: 45 }}
-      dpr={[1, 1.8]}
-      gl={{ antialias: true, alpha: true }}
-      frameloop={reduce ? "demand" : "always"}
-    >
-      <Suspense fallback={null}>
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[3, 4, 5]} intensity={1.6} color="#ffffff" />
-        <pointLight position={[-4, -2, -3]} intensity={2.2} color="#38e0c9" />
-        <Blob />
-        <Particles />
-      </Suspense>
-    </Canvas>
+    <div className="relative h-[30rem] overflow-hidden">
+      <Canvas
+        dpr={[1, 1.5]}
+        camera={{ fov: 50, position: [1.1, 2, 3] }}
+        gl={{ antialias: true, alpha: true }}
+        onCreated={({ gl }) => {
+          gl.setClearColor(0x000000, 0);
+          gl.toneMappingExposure = 0.45;
+        }}
+      >
+        <Suspense fallback={null}>
+          <ambientLight color="#4466ff" intensity={0.85} />
+          <pointLight position={[1.2, 2.6, 3]} intensity={22} distance={12} />
+          <directionalLight position={[-2, 3, 2]} intensity={1.2} color="#f2d4c8" />
+          <MichelleModel />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }

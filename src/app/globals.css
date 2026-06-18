@@ -3,28 +3,35 @@
 @tailwind utilities;
 
 :root {
-  /* Dark theme (default) */
-  --bg: 8 9 13;
-  --surface: 15 17 23;
-  --elevated: 22 25 33;
-  --ink: 237 240 247;
-  --muted: 148 156 173;
-  --line: 38 42 54;
-  --accent: 124 108 255; /* indigo-violet */
-  --accent2: 56 224 201; /* teal */
+  /* Dark theme (default) — "Black Parrot / Queen of Night" moody tulip palette */
+  --bg: 24 9 11; /* near-black oxblood, deeper sibling of #310E10 */
+  --surface: 49 14 16; /* #310E10 */
+  --elevated: 66 26 27; /* lifted oxblood */
+  --ink: 237 230 223; /* warm off-white (no gold cream) */
+  --title: 235 178 172; /* blush rose — titles & headings */
+  --muted: 178 144 134; /* lifted #947268 mauve for readable secondary text */
+  --line: 82 40 38; /* warm dark red-brown border */
+  --accent: 176 30 38; /* tulip crimson, brightened from #74070E for legibility */
+  --accent2: 148 114 104; /* #947268 mauve-taupe */
+  --petal: 116 7 14; /* #74070E deep oxblood for fills & depth */
+  --leaf: 69 70 42; /* #45462A dark olive */
   --font-sans: "Inter", system-ui, sans-serif;
   --font-display: "Space Grotesk", system-ui, sans-serif;
 }
 
 .light {
-  --bg: 247 248 251;
-  --surface: 255 255 255;
-  --elevated: 255 255 255;
-  --ink: 17 20 28;
-  --muted: 92 100 115;
-  --line: 224 228 236;
-  --accent: 99 82 255;
-  --accent2: 14 165 165;
+  /* Light theme — sunlit cream petals, exact palette accents */
+  --bg: 240 227 188; /* warm cream, deeper than #F4E3B2 */
+  --surface: 249 239 211;
+  --elevated: 253 245 224;
+  --ink: 49 14 16; /* #310E10 */
+  --title: 116 7 14; /* #74070E — deep oxblood titles */
+  --muted: 116 80 72; /* deepened #947268 mauve */
+  --line: 214 192 150; /* warm tan border */
+  --accent: 116 7 14; /* #74070E */
+  --accent2: 69 70 42; /* #45462A olive */
+  --petal: 116 7 14; /* #74070E */
+  --leaf: 69 70 42; /* #45462A */
 }
 
 * {
@@ -42,6 +49,16 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display {
+  color: rgb(var(--title));
 }
 
 .app-shell {
@@ -122,13 +139,10 @@ html.lenis body {
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
   .gradient-text {
     background: linear-gradient(
       120deg,
-      rgb(var(--ink)) 0%,
+      rgb(var(--title)) 0%,
       rgb(var(--accent)) 50%,
       rgb(var(--accent2)) 100%
     );
@@ -159,19 +173,24 @@ html.lenis body {
   position: absolute;
   inset: 0;
   background:
+    linear-gradient(
+      180deg,
+      rgb(var(--surface) / 0.18) 0%,
+      transparent 38%
+    ),
     radial-gradient(
-      45% 32% at 50% 28%,
-      rgb(var(--accent) / 0.18),
+      42% 28% at 50% 24%,
+      rgb(var(--accent) / 0.14),
       transparent 70%
     ),
     radial-gradient(
-      40% 28% at 88% 18%,
-      rgb(var(--accent2) / 0.12),
+      34% 24% at 86% 16%,
+      rgb(var(--petal) / 0.12),
       transparent 70%
     ),
     radial-gradient(
-      40% 30% at 5% 92%,
-      rgb(var(--accent) / 0.1),
+      36% 28% at 8% 90%,
+      rgb(var(--leaf) / 0.1),
       transparent 70%
     );
 }
@@ -186,7 +205,17 @@ html.lenis body {
   .glass {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    background: rgb(var(--surface) / 0.9);
+    background: rgb(var(--surface) / 0.95);
+  }
+
+  /* Faster first paint on touch devices. */
+  .app-shell {
+    opacity: 1;
+    transition: none;
+  }
+
+  .app-loader {
+    display: none;
   }
 }
 

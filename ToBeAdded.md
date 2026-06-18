@@ -1,5 +1,5 @@
--> book shelf 
--> travel 
--> medium blog ->done
+-> book shelf -> done
+-> travel -> coorg, munnar, dirang, gokarna
+-> medium blog -> done
 -> food i've eaten/cooked
 -> seperate section for side business

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { profile } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { useMobileLightweight } from "@/hooks/useMobileLightweight";
 
 function Field({
   label,
@@ -77,6 +78,7 @@ const socials = [
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const lightweight = useMobileLightweight();
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,21 +113,39 @@ export function Contact() {
           </Reveal>
 
           <div className="mt-7 flex flex-wrap gap-3 sm:mt-8">
-            {socials.map(({ label, href, icon: Icon }) => (
-              <motion.a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                whileHover={{ y: -5, rotate: 6, scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 300, damping: 14 }}
-                className="grid h-12 w-12 place-items-center rounded-full border border-line bg-surface/60 text-muted transition-colors hover:border-accent/60 hover:text-accent"
-              >
-                <Icon />
-              </motion.a>
-            ))}
+            {socials.map(({ label, href, icon: Icon }) => {
+              const className =
+                "grid h-12 w-12 place-items-center rounded-full border border-line bg-surface/60 text-muted transition-colors hover:border-accent/60 hover:text-accent";
+              if (lightweight) {
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className={className}
+                  >
+                    <Icon />
+                  </a>
+                );
+              }
+              return (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  whileHover={{ y: -5, rotate: 6, scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 14 }}
+                  className={className}
+                >
+                  <Icon />
+                </motion.a>
+              );
+            })}
           </div>
         </div>
 

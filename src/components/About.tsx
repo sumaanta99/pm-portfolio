@@ -6,6 +6,7 @@ import Image from "next/image";
 import { profile, timeline } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { useMobileLightweight } from "@/hooks/useMobileLightweight";
 
 const highlights = [
   { value: "4.5 yrs", label: "Eng-led product" },
@@ -15,6 +16,7 @@ const highlights = [
 
 export function About() {
   const lineRef = useRef<HTMLDivElement>(null);
+  const lightweight = useMobileLightweight();
   const { scrollYProgress } = useScroll({
     target: lineRef,
     offset: ["start 70%", "end 60%"],
@@ -34,58 +36,25 @@ export function About() {
             description={profile.summary}
           />
 
-          {/* clip-path reveal portrait card */}
           <Reveal direction="up" delay={0.1}>
-            <motion.div
-              initial={{ clipPath: "inset(100% 0 0 0)" }}
-              whileInView={{ clipPath: "inset(0% 0 0 0)" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative mt-10 overflow-hidden rounded-4xl border border-line bg-gradient-to-br from-elevated to-surface p-6 sm:p-8"
-            >
-              <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent/20 blur-3xl transition-transform duration-700 group-hover:scale-150" />
-              <div className="relative flex items-center gap-4 sm:gap-5">
-                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-white/15 shadow-glow">
-                  <Image
-                    src="/images/profile-photo.png"
-                    alt={`${profile.name} portrait`}
-                    fill
-                    sizes="80px"
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-                <div>
-                  <p className="font-display text-xl font-semibold">
-                    {profile.name}
-                  </p>
-                  <p className="text-sm text-muted">{profile.role}</p>
-                  <p className="mt-1 text-xs text-muted">
-                    {profile.education} · {profile.location}
-                  </p>
-                </div>
+            {lightweight ? (
+              <div className="group relative mt-10 overflow-hidden rounded-4xl border border-line bg-gradient-to-br from-elevated to-surface p-6 sm:p-8">
+                <PortraitContent />
               </div>
-              <StaggerGroup className="relative mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                {highlights.map((h) => (
-                  <motion.div
-                    key={h.label}
-                    variants={staggerItem}
-                    className="rounded-2xl border border-line bg-surface/60 p-4"
-                  >
-                    <p className="font-display text-lg font-bold text-accent">
-                      {h.value}
-                    </p>
-                    <p className="mt-1 text-[11px] leading-tight text-muted">
-                      {h.label}
-                    </p>
-                  </motion.div>
-                ))}
-              </StaggerGroup>
-            </motion.div>
+            ) : (
+              <motion.div
+                initial={{ clipPath: "inset(100% 0 0 0)" }}
+                whileInView={{ clipPath: "inset(0% 0 0 0)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative mt-10 overflow-hidden rounded-4xl border border-line bg-gradient-to-br from-elevated to-surface p-6 sm:p-8"
+              >
+                <PortraitContent />
+              </motion.div>
+            )}
           </Reveal>
         </div>
 
-        {/* timeline */}
         <div ref={lineRef} className="relative">
           <Reveal>
             <h3 className="mb-10 font-display text-sm font-semibold uppercase tracking-[0.2em] text-muted">
@@ -94,28 +63,34 @@ export function About() {
           </Reveal>
 
           <div className="relative pl-8 sm:pl-10">
-            {/* track */}
             <div className="absolute left-[10px] top-2 h-full w-px bg-line sm:left-[14px]" />
-            {/* animated progress */}
-            <motion.div
-              style={{ height: progressHeight }}
-              className="absolute left-[10px] top-2 w-px bg-gradient-to-b from-accent via-accent2 to-transparent sm:left-[14px]"
-            />
+            {lightweight ? (
+              <div className="absolute left-[10px] top-2 h-full w-px bg-gradient-to-b from-accent via-accent2 to-transparent sm:left-[14px]" />
+            ) : (
+              <motion.div
+                style={{ height: progressHeight }}
+                className="absolute left-[10px] top-2 w-px bg-gradient-to-b from-accent via-accent2 to-transparent sm:left-[14px]"
+              />
+            )}
 
             <div className="flex flex-col gap-10">
               {timeline.map((item, i) => (
                 <Reveal key={item.org} direction="up" delay={i * 0.05}>
                   <div className="group relative">
                     <span className="absolute -left-[30px] top-1.5 grid h-5 w-5 place-items-center rounded-full border border-line bg-bg sm:-left-[38px]">
-                      <motion.span
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 + i * 0.05, type: "spring" }}
-                        className="h-2.5 w-2.5 rounded-full bg-accent shadow-glow"
-                      />
+                      {lightweight ? (
+                        <span className="h-2.5 w-2.5 rounded-full bg-accent shadow-glow" />
+                      ) : (
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.2 + i * 0.05, type: "spring" }}
+                          className="h-2.5 w-2.5 rounded-full bg-accent shadow-glow"
+                        />
+                      )}
                     </span>
-                    <div className="rounded-2xl border border-transparent p-1 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-line group-hover:bg-surface/40 group-hover:px-5 group-hover:py-4">
+                    <div className="rounded-2xl border border-transparent p-1 transition-all duration-300 md:group-hover:-translate-y-1 md:group-hover:border-line md:group-hover:bg-surface/40 md:group-hover:px-5 md:group-hover:py-4">
                       <div className="flex flex-wrap items-baseline justify-between gap-x-4">
                         <p className="font-display text-lg font-semibold">
                           {item.org}
@@ -137,5 +112,44 @@ export function About() {
         </div>
       </div>
     </section>
+  );
+}
+
+function PortraitContent() {
+  return (
+    <>
+      <div className="absolute -right-10 -top-10 hidden h-40 w-40 rounded-full bg-accent/20 blur-3xl transition-transform duration-700 group-hover:scale-150 md:block" />
+      <div className="relative flex items-center gap-4 sm:gap-5">
+        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-white/15 shadow-glow">
+          <Image
+            src="/images/profile-photo.png"
+            alt={`${profile.name} portrait`}
+            fill
+            sizes="80px"
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div>
+          <p className="font-display text-xl font-semibold">{profile.name}</p>
+          <p className="text-sm text-muted">{profile.role}</p>
+          <p className="mt-1 text-xs text-muted">
+            {profile.education} · {profile.location}
+          </p>
+        </div>
+      </div>
+      <StaggerGroup className="relative mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+        {highlights.map((h) => (
+          <motion.div
+            key={h.label}
+            variants={staggerItem}
+            className="rounded-2xl border border-line bg-surface/60 p-4"
+          >
+            <p className="font-display text-lg font-bold text-accent">{h.value}</p>
+            <p className="mt-1 text-[11px] leading-tight text-muted">{h.label}</p>
+          </motion.div>
+        ))}
+      </StaggerGroup>
+    </>
   );
 }

@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { useEffect, useState, type ReactNode } from "react";
+import { motion, type Variants } from "framer-motion";
+import { type ReactNode } from "react";
+import { useMobileLightweight } from "@/hooks/useMobileLightweight";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
@@ -26,18 +27,7 @@ export function Reveal({
   className?: string;
   once?: boolean;
 }) {
-  const reduce = useReducedMotion();
-  const [reduceOnMobile, setReduceOnMobile] = useState(false);
-
-  useEffect(() => {
-    const media = window.matchMedia("(max-width: 767px), (pointer: coarse)");
-    const apply = () => setReduceOnMobile(media.matches);
-    apply();
-    media.addEventListener("change", apply);
-    return () => media.removeEventListener("change", apply);
-  }, []);
-
-  const shouldReduce = reduce || reduceOnMobile;
+  const shouldReduce = useMobileLightweight();
   if (shouldReduce) {
     return <div className={className}>{children}</div>;
   }
@@ -65,7 +55,7 @@ export function Reveal({
   );
 }
 
-export const staggerContainer: Variants = {
+const staggerContainer: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
 };
@@ -88,18 +78,8 @@ export function StaggerGroup({
   className?: string;
   once?: boolean;
 }) {
-  const reduce = useReducedMotion();
-  const [reduceOnMobile, setReduceOnMobile] = useState(false);
-
-  useEffect(() => {
-    const media = window.matchMedia("(max-width: 767px), (pointer: coarse)");
-    const apply = () => setReduceOnMobile(media.matches);
-    apply();
-    media.addEventListener("change", apply);
-    return () => media.removeEventListener("change", apply);
-  }, []);
-
-  if (reduce || reduceOnMobile) {
+  const shouldReduce = useMobileLightweight();
+  if (shouldReduce) {
     return <div className={className}>{children}</div>;
   }
 
