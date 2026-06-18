@@ -48,6 +48,19 @@ export function Hero() {
   }, []);
 
   const lightweightMode = reduce || reduceOnMobile;
+
+  // On mobile, headline fades in quickly (opacity only) with no long delays;
+  // on desktop, words slide up with a staggered reveal.
+  const headlineContainer = lightweightMode
+    ? { hidden: {}, show: { transition: { staggerChildren: 0.04 } } }
+    : container;
+  const headlineWord = lightweightMode
+    ? {
+        hidden: { opacity: 0 },
+        show: { opacity: 1, transition: { duration: 0.3, ease: "easeOut" } },
+      }
+    : word;
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -64,9 +77,12 @@ export function Hero() {
     >
       {/* gradient mesh background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/3 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px]" />
-        <div className="absolute right-0 top-1/4 h-80 w-80 rounded-full bg-accent2/15 blur-[100px]" />
-        <div className="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-accent/10 blur-[100px]" />
+        {/* desktop: GPU blur blobs */}
+        <div className="absolute left-1/2 top-1/3 hidden h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px] md:block" />
+        <div className="absolute right-0 top-1/4 hidden h-80 w-80 rounded-full bg-accent2/15 blur-[100px] md:block" />
+        <div className="absolute bottom-0 left-0 hidden h-72 w-72 rounded-full bg-accent/10 blur-[100px] md:block" />
+        {/* mobile: cheap pre-blurred radial gradients (no GPU blur filter) */}
+        <div className="hero-glow-mobile md:hidden" />
       </div>
 
       {/* 3D scene */}
@@ -82,9 +98,12 @@ export function Hero() {
         className="relative mx-auto w-full max-w-6xl px-4 sm:px-6"
       >
         <motion.span
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: lightweightMode ? 0 : 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.6 }}
+          transition={{
+            delay: lightweightMode ? 0 : 0.15,
+            duration: lightweightMode ? 0.3 : 0.6,
+          }}
           className="mb-5 mt-20 inline-flex items-center gap-2 rounded-full border border-line bg-surface/40 px-3.5 py-2 text-[11px] font-medium tracking-wide text-muted backdrop-blur sm:mb-6 sm:mt-20 sm:px-4 sm:text-xs"
         >
           <span className="relative flex h-2 w-2">
@@ -95,7 +114,7 @@ export function Hero() {
         </motion.span>
 
         <motion.h1
-          variants={container}
+          variants={headlineContainer}
           initial="hidden"
           animate="show"
           className="font-display text-[2.7rem] font-bold leading-[0.95] tracking-tight sm:text-6xl lg:text-8xl"
@@ -103,7 +122,7 @@ export function Hero() {
           {headline.map((line, i) => (
             <span key={i} className="block overflow-hidden py-1">
               <motion.span
-                variants={word}
+                variants={headlineWord}
                 className={`inline-block ${i === 2 ? "gradient-text" : ""}`}
               >
                 {line}
@@ -113,9 +132,12 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: lightweightMode ? 0 : 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.7 }}
+          transition={{
+            delay: lightweightMode ? 0.08 : 0.9,
+            duration: lightweightMode ? 0.3 : 0.7,
+          }}
           className="mt-6 max-w-xl text-sm leading-relaxed text-muted sm:mt-7 sm:text-lg"
         >
           Hi, I&apos;m Sumaanta Munde. 👋
@@ -125,9 +147,13 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: lightweightMode ? 0 : 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.15, duration: 0.6, type: "spring", bounce: 0.4 }}
+          transition={
+            lightweightMode
+              ? { delay: 0.12, duration: 0.3 }
+              : { delay: 1.15, duration: 0.6, type: "spring", bounce: 0.4 }
+          }
           className="mt-8 flex flex-wrap items-center gap-3.5 sm:mt-9 sm:gap-4"
         >
           <MagneticButton href="#work" variant="primary">

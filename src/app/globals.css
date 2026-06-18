@@ -154,6 +154,28 @@ html.lenis body {
   }
 }
 
+/* Mobile-only hero glow: pre-blurred radial gradients instead of GPU blur() filters. */
+.hero-glow-mobile {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      45% 32% at 50% 28%,
+      rgb(var(--accent) / 0.18),
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 28% at 88% 18%,
+      rgb(var(--accent2) / 0.12),
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 30% at 5% 92%,
+      rgb(var(--accent) / 0.1),
+      transparent 70%
+    );
+}
+
 @media (max-width: 767px) {
   /* Mobile paint optimization: disable expensive fixed noise layer. */
   .grain::before {
