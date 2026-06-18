@@ -7,7 +7,10 @@ import { Reveal, StaggerGroup, staggerItem } from "@/components/ui/Reveal";
 
 export function Skills() {
   return (
-    <section id="skills" className="relative mx-auto max-w-6xl px-6 py-28 md:py-36">
+    <section
+      id="skills"
+      className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24 md:py-32"
+    >
       <div className="pointer-events-none absolute left-1/2 top-20 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
 
       <SectionHeading
@@ -17,10 +20,10 @@ export function Skills() {
         align="center"
       />
 
-      <div className="mt-14 grid gap-6 md:grid-cols-2">
+      <div className="mt-10 grid gap-5 sm:mt-14 sm:gap-6 md:grid-cols-2">
         {skillGroups.map((group, gi) => (
           <Reveal key={group.title} direction="up" delay={gi * 0.06}>
-            <div className="h-full rounded-4xl border border-line bg-surface/50 p-7">
+            <div className="h-full rounded-4xl border border-line bg-surface/50 p-5 sm:p-7">
               <h3 className="mb-6 font-display text-lg font-semibold">
                 {group.title}
               </h3>
@@ -40,20 +43,20 @@ export function Skills() {
       </div>
 
       {/* floating tool chips */}
-      <div className="mt-14">
+      <div className="mt-10 sm:mt-14">
         <Reveal>
           <p className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.22em] text-muted">
             Tools I reach for
           </p>
         </Reveal>
-        <StaggerGroup className="flex flex-wrap justify-center gap-3">
+        <StaggerGroup className="flex flex-wrap justify-center gap-2.5 sm:gap-3">
           {tools.map((tool) => (
             <motion.span
               key={tool}
               variants={staggerItem}
               whileHover={{ y: -6, rotate: -2, scale: 1.06 }}
               transition={{ type: "spring", stiffness: 300, damping: 14 }}
-              className="cursor-default rounded-full border border-line bg-surface/60 px-5 py-2.5 text-sm font-medium text-muted transition-colors hover:border-accent/60 hover:text-ink"
+              className="cursor-default rounded-full border border-line bg-surface/60 px-4 py-2 text-xs font-medium text-muted transition-colors hover:border-accent/60 hover:text-ink sm:px-5 sm:py-2.5 sm:text-sm"
             >
               {tool}
             </motion.span>

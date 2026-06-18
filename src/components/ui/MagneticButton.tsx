@@ -49,7 +49,7 @@ export function MagneticButton({
   };
 
   const base =
-    "relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-colors duration-300 will-change-transform";
+    "relative inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium tracking-wide transition-colors duration-300 will-change-transform sm:px-7 sm:py-3.5";
   const styles =
     variant === "primary"
       ? "bg-accent text-white shadow-glow hover:bg-accent/90"

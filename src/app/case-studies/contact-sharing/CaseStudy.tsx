@@ -241,7 +241,7 @@ const edges = [
 
 export function CaseStudy() {
   return (
-    <main className="relative mx-auto max-w-5xl px-6 pb-32 pt-28 sm:pt-32">
+    <main className="relative mx-auto max-w-5xl px-4 pb-24 pt-24 sm:px-6 sm:pb-32 sm:pt-32">
       {/* ambient glow */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] opacity-50 blur-3xl"
@@ -270,7 +270,7 @@ export function CaseStudy() {
           </span>
         </Reveal>
         <Reveal direction="up" delay={0.06}>
-          <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             Consent-driven contact sharing
           </h1>
         </Reveal>
@@ -412,8 +412,8 @@ export function CaseStudy() {
       <section className="mt-20">
         <SectionTitle eyebrow="Goals & metrics" title="What success looked like" />
         <Reveal direction="up" delay={0.1}>
-          <div className="mt-6 overflow-hidden rounded-3xl border border-line">
-            <table className="w-full text-left text-sm">
+          <div className="mt-6 overflow-x-auto rounded-3xl border border-line" data-lenis-prevent>
+            <table className="w-full min-w-[680px] text-left text-sm">
               <thead className="bg-surface/60 text-xs uppercase tracking-wide text-muted">
                 <tr>
                   <th className="px-5 py-3 font-medium">Goal</th>
@@ -520,7 +520,7 @@ export function CaseStudy() {
           title="The flow, screen by screen"
           description="Low-fidelity mockups of the five key moments. Scroll horizontally."
         />
-        <div className="mt-8 -mx-6 overflow-x-auto px-6 pb-4" data-lenis-prevent>
+        <div className="mt-8 -mx-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6" data-lenis-prevent>
           <div className="flex gap-5">
             <Phone step="01" title="Connector picks 'Share a contact'">
               <Bubble side="in">Hey, you should talk to my friend!</Bubble>

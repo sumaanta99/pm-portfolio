@@ -22,7 +22,10 @@ export function About() {
   const progressHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="about" className="relative mx-auto max-w-6xl px-6 py-28 md:py-36">
+    <section
+      id="about"
+      className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24 md:py-32"
+    >
       <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading
@@ -38,10 +41,10 @@ export function About() {
               whileInView={{ clipPath: "inset(0% 0 0 0)" }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative mt-10 overflow-hidden rounded-4xl border border-line bg-gradient-to-br from-elevated to-surface p-8"
+              className="group relative mt-10 overflow-hidden rounded-4xl border border-line bg-gradient-to-br from-elevated to-surface p-6 sm:p-8"
             >
               <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent/20 blur-3xl transition-transform duration-700 group-hover:scale-150" />
-              <div className="relative flex items-center gap-5">
+              <div className="relative flex items-center gap-4 sm:gap-5">
                 <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-white/15 shadow-glow">
                   <Image
                     src="/images/profile-photo.png"
@@ -62,7 +65,7 @@ export function About() {
                   </p>
                 </div>
               </div>
-              <StaggerGroup className="relative mt-8 grid grid-cols-3 gap-3">
+              <StaggerGroup className="relative mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {highlights.map((h) => (
                   <motion.div
                     key={h.label}
@@ -90,20 +93,20 @@ export function About() {
             </h3>
           </Reveal>
 
-          <div className="relative pl-10">
+          <div className="relative pl-8 sm:pl-10">
             {/* track */}
-            <div className="absolute left-[14px] top-2 h-full w-px bg-line" />
+            <div className="absolute left-[10px] top-2 h-full w-px bg-line sm:left-[14px]" />
             {/* animated progress */}
             <motion.div
               style={{ height: progressHeight }}
-              className="absolute left-[14px] top-2 w-px bg-gradient-to-b from-accent via-accent2 to-transparent"
+              className="absolute left-[10px] top-2 w-px bg-gradient-to-b from-accent via-accent2 to-transparent sm:left-[14px]"
             />
 
             <div className="flex flex-col gap-10">
               {timeline.map((item, i) => (
                 <Reveal key={item.org} direction="up" delay={i * 0.05}>
                   <div className="group relative">
-                    <span className="absolute -left-[38px] top-1.5 grid h-5 w-5 place-items-center rounded-full border border-line bg-bg">
+                    <span className="absolute -left-[30px] top-1.5 grid h-5 w-5 place-items-center rounded-full border border-line bg-bg sm:-left-[38px]">
                       <motion.span
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}

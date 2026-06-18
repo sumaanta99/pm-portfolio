@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { profile } from "@/lib/data";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
@@ -29,6 +29,15 @@ const word = {
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  const [showScene, setShowScene] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 768px)");
+    const apply = () => setShowScene(media.matches);
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -53,20 +62,20 @@ export function Hero() {
       {/* 3D scene */}
       <motion.div
         style={{ scale: sceneScale }}
-        className="absolute right-0 top-0 -z-[5] h-full w-full md:w-3/5"
+        className="pointer-events-none absolute right-0 top-0 -z-[5] hidden h-full w-full md:block md:w-3/5"
       >
-        <HeroScene />
+        {showScene ? <HeroScene /> : null}
       </motion.div>
 
       <motion.div
         style={{ y, opacity }}
-        className="relative mx-auto w-full max-w-6xl px-6"
+        className="relative mx-auto w-full max-w-6xl px-4 sm:px-6"
       >
         <motion.span
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.6 }}
-          className="mb-6 mt-16 inline-flex items-center gap-2 rounded-full border border-line bg-surface/40 px-4 py-2 text-xs font-medium tracking-wide text-muted backdrop-blur sm:mt-20"
+          className="mb-5 mt-20 inline-flex items-center gap-2 rounded-full border border-line bg-surface/40 px-3.5 py-2 text-[11px] font-medium tracking-wide text-muted backdrop-blur sm:mb-6 sm:mt-20 sm:px-4 sm:text-xs"
         >
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent2 opacity-75" />
@@ -79,7 +88,7 @@ export function Hero() {
           variants={container}
           initial="hidden"
           animate="show"
-          className="font-display text-5xl font-bold leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl"
+          className="font-display text-[2.7rem] font-bold leading-[0.95] tracking-tight sm:text-6xl lg:text-8xl"
         >
           {headline.map((line, i) => (
             <span key={i} className="block overflow-hidden py-1">
@@ -97,7 +106,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.7 }}
-          className="mt-7 max-w-xl text-base leading-relaxed text-muted sm:text-lg"
+          className="mt-6 max-w-xl text-sm leading-relaxed text-muted sm:mt-7 sm:text-lg"
         >
           Hi, I&apos;m Sumaanta Munde. 👋
           <br />
@@ -109,7 +118,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.15, duration: 0.6, type: "spring", bounce: 0.4 }}
-          className="mt-9 flex flex-wrap items-center gap-4"
+          className="mt-8 flex flex-wrap items-center gap-3.5 sm:mt-9 sm:gap-4"
         >
           <MagneticButton href="#work" variant="primary">
             Review my work

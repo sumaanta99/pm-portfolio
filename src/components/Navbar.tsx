@@ -43,10 +43,10 @@ export function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-      className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4"
+      className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-4 sm:pt-4"
     >
       <nav
-        className={`flex w-full max-w-5xl items-center justify-between rounded-full px-3 py-2.5 transition-all duration-500 ${
+        className={`flex w-full max-w-5xl items-center justify-between rounded-2xl px-2.5 py-2 transition-all duration-500 sm:rounded-full sm:px-3 sm:py-2.5 ${
           scrolled
             ? "glass shadow-lift"
             : "border border-transparent bg-transparent"
@@ -54,7 +54,7 @@ export function Navbar() {
       >
         <a
           href="#top"
-          className="group flex items-center gap-2.5 pl-3 text-sm font-semibold"
+          className="group flex items-center gap-2 pl-2 text-sm font-semibold sm:gap-2.5 sm:pl-3"
         >
           <motion.span
             whileHover={{ rotate: 90 }}
@@ -63,7 +63,7 @@ export function Navbar() {
           >
             <span className="font-display text-base font-bold">S</span>
           </motion.span>
-          <span className="font-display tracking-tight">
+          <span className="hidden font-display tracking-tight sm:inline">
             {profile.name.split(" ")[0]}
             <span className="text-accent">.</span>
           </span>
@@ -92,7 +92,7 @@ export function Navbar() {
           })}
         </ul>
 
-        <div className="flex items-center gap-2 pr-1">
+        <div className="flex items-center gap-1.5 pr-0.5 sm:gap-2 sm:pr-1">
           <a
             href="#contact"
             className="hidden rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-glow transition-transform hover:scale-105 sm:inline-block"
@@ -103,7 +103,7 @@ export function Navbar() {
           <button
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle menu"
-            className="grid h-10 w-10 place-items-center rounded-full border border-line bg-surface/50 md:hidden"
+            className="grid h-9 w-9 place-items-center rounded-full border border-line bg-surface/50 md:hidden"
           >
             <div className="relative h-4 w-5">
               <motion.span
@@ -129,7 +129,7 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 top-0 z-40 flex flex-col bg-bg/95 px-6 pb-10 pt-28 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 top-0 z-40 flex flex-col bg-bg/95 px-5 pb-8 pt-24 backdrop-blur-xl md:hidden"
           >
             <ul className="flex flex-col gap-2">
               {navLinks.map((link, i) => (
@@ -142,7 +142,7 @@ export function Navbar() {
                   <a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block border-b border-line py-5 font-display text-3xl font-semibold"
+                    className="block border-b border-line py-4 font-display text-2xl font-semibold"
                   >
                     {link.label}
                   </a>

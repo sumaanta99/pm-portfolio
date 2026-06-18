@@ -86,7 +86,10 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative mx-auto max-w-6xl px-6 py-28 md:py-36">
+    <section
+      id="contact"
+      className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24 md:py-32"
+    >
       <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
         <div>
           <SectionHeading
@@ -95,10 +98,10 @@ export function Contact() {
             description="Have a 0→1 idea, an ambiguous problem, or a role you think I'd love? I read every message."
           />
           <Reveal direction="up" delay={0.1}>
-            <div className="mt-10 flex flex-col gap-4">
+            <div className="mt-9 flex flex-col gap-3.5 sm:mt-10 sm:gap-4">
               <a
                 href={profile.socials.email}
-                className="font-display text-xl font-semibold transition-colors hover:text-accent sm:text-2xl"
+                className="break-all font-display text-lg font-semibold transition-colors hover:text-accent sm:text-2xl"
               >
                 {profile.email}
               </a>
@@ -107,7 +110,7 @@ export function Contact() {
             </div>
           </Reveal>
 
-          <div className="mt-8 flex gap-3">
+          <div className="mt-7 flex flex-wrap gap-3 sm:mt-8">
             {socials.map(({ label, href, icon: Icon }) => (
               <motion.a
                 key={label}
@@ -129,7 +132,7 @@ export function Contact() {
         <Reveal direction="up" delay={0.15}>
           <form
             onSubmit={submit}
-            className="flex flex-col gap-8 rounded-4xl border border-line bg-surface/50 p-8"
+            className="flex flex-col gap-7 rounded-4xl border border-line bg-surface/50 p-5 sm:gap-8 sm:p-8"
           >
             <Field
               label="Your name"

@@ -95,7 +95,7 @@ const learned = [
 
 export function CaseStudy() {
   return (
-    <main className="relative mx-auto max-w-3xl px-6 pb-32 pt-28 sm:pt-32">
+    <main className="relative mx-auto max-w-3xl px-4 pb-24 pt-24 sm:px-6 sm:pb-32 sm:pt-32">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] opacity-50 blur-3xl"
         style={{
@@ -121,7 +121,7 @@ export function CaseStudy() {
           </span>
         </Reveal>
         <Reveal direction="up" delay={0.06}>
-          <h1 className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl">
+          <h1 className="mt-5 font-display text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl">
             Napkin Math vs Healthify vs MyFitnessPal
           </h1>
         </Reveal>

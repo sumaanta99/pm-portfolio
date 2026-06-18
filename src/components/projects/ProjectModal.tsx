@@ -40,7 +40,7 @@ export function ProjectModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-bg/70 p-4 backdrop-blur-md sm:p-8"
+          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-bg/70 p-3 backdrop-blur-md sm:p-8"
         >
           <motion.div
             layout
@@ -50,11 +50,11 @@ export function ProjectModal({
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
             data-lenis-prevent
-            className="relative my-8 w-full max-w-3xl overflow-hidden rounded-4xl border border-line bg-surface shadow-lift"
+            className="relative my-4 w-full max-w-3xl overflow-hidden rounded-4xl border border-line bg-surface shadow-lift sm:my-8"
           >
             {/* header */}
             <div
-              className="relative overflow-hidden px-8 pb-8 pt-10"
+              className="relative overflow-hidden px-5 pb-6 pt-8 sm:px-8 sm:pb-8 sm:pt-10"
               style={{
                 background: `linear-gradient(135deg, rgb(${project.accent} / 0.18), transparent 70%)`,
               }}
@@ -66,7 +66,7 @@ export function ProjectModal({
               <button
                 onClick={onClose}
                 aria-label="Close"
-                className="absolute right-6 top-6 grid h-10 w-10 place-items-center rounded-full border border-line bg-bg/60 text-ink transition-transform hover:rotate-90"
+                className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-line bg-bg/60 text-ink transition-transform hover:rotate-90 sm:right-6 sm:top-6 sm:h-10 sm:w-10"
               >
                 ✕
               </button>
@@ -79,7 +79,7 @@ export function ProjectModal({
               >
                 {project.category} · {project.year}
               </span>
-              <h2 className="relative mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+              <h2 className="relative mt-4 font-display text-2xl font-bold tracking-tight sm:text-4xl">
                 {project.title}
               </h2>
               <p className="relative mt-1 text-base text-muted">
@@ -87,14 +87,14 @@ export function ProjectModal({
               </p>
 
               {/* animated metric counters */}
-              <div className="relative mt-7 grid grid-cols-3 gap-4">
+              <div className="relative mt-6 grid grid-cols-2 gap-3 sm:mt-7 sm:grid-cols-3 sm:gap-4">
                 {project.metrics.map((m) => (
                   <div
                     key={m.label}
-                    className="rounded-2xl border border-line bg-bg/40 p-4"
+                    className="rounded-2xl border border-line bg-bg/40 p-3 sm:p-4"
                   >
                     <p
-                      className="font-display text-2xl font-bold"
+                      className="font-display text-xl font-bold sm:text-2xl"
                       style={{ color: `rgb(${project.accent})` }}
                     >
                       <AnimatedCounter
@@ -112,14 +112,14 @@ export function ProjectModal({
             </div>
 
             {/* body: P → R → S → I */}
-            <div className="space-y-7 px-8 py-8">
+            <div className="space-y-6 px-5 py-6 sm:space-y-7 sm:px-8 sm:py-8">
               {sections.map((s, i) => (
                 <motion.div
                   key={s.key}
                   initial={{ opacity: 0, x: 24 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.15 + i * 0.1, duration: 0.5 }}
-                  className="relative pl-8"
+                  className="relative pl-6 sm:pl-8"
                 >
                   <span
                     className="absolute left-0 top-0.5 text-sm"

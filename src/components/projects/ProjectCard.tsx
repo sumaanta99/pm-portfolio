@@ -53,7 +53,7 @@ export function ProjectCard({
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       style={{ rotateX: rx, rotateY: ry, transformPerspective: 900 }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-4xl border border-line bg-surface/60 p-7 text-left will-change-transform"
+      className="group relative flex h-full flex-col overflow-hidden rounded-4xl border border-line bg-surface/60 p-5 text-left will-change-transform sm:p-7"
     >
       {/* glow following accent */}
       <div
@@ -74,8 +74,8 @@ export function ProjectCard({
         <span className="text-xs text-muted">{project.year}</span>
       </div>
 
-      <div className="relative mt-6 flex items-center gap-3">
-        <h3 className="font-display text-2xl font-bold tracking-tight">
+      <div className="relative mt-5 flex flex-wrap items-center gap-2.5 sm:mt-6 sm:gap-3">
+        <h3 className="font-display text-xl font-bold tracking-tight sm:text-2xl">
           {project.title}
         </h3>
         {project.status && (
@@ -91,11 +91,11 @@ export function ProjectCard({
       </p>
 
       {/* metrics */}
-      <div className="relative mt-6 flex flex-wrap gap-x-6 gap-y-2">
+      <div className="relative mt-5 flex flex-wrap gap-x-5 gap-y-2 sm:mt-6 sm:gap-x-6">
         {project.metrics.slice(0, 3).map((m) => (
           <div key={m.label}>
             <p
-              className="font-display text-lg font-bold"
+              className="font-display text-base font-bold sm:text-lg"
               style={{ color: `rgb(${project.accent})` }}
             >
               {m.prefix}
@@ -107,7 +107,7 @@ export function ProjectCard({
         ))}
       </div>
 
-      <div className="relative mt-auto flex flex-wrap gap-2 pt-6">
+      <div className="relative mt-auto flex flex-wrap gap-2 pt-5 sm:pt-6">
         {project.tags.slice(0, 3).map((t) => (
           <span
             key={t}

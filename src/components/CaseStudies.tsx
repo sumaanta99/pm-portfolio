@@ -14,7 +14,7 @@ export function CaseStudies() {
   return (
     <section
       id="case-studies"
-      className="relative mx-auto max-w-6xl px-6 py-28 md:py-36"
+      className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24 md:py-32"
     >
       <SectionHeading
         eyebrow="Deep dives"
@@ -22,12 +22,12 @@ export function CaseStudies() {
         description="End-to-end product breakdowns — problem, research, wireframes, flows and the specs that shipped."
       />
 
-      <StaggerGroup className="mt-12 grid gap-6 md:grid-cols-2">
+      <StaggerGroup className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 md:grid-cols-2">
         {caseStudies.map((p) => (
           <motion.div key={p.id} variants={staggerItem}>
             <Link
               href={p.caseStudyHref!}
-              className="group relative flex h-full flex-col overflow-hidden rounded-4xl border border-line bg-surface/60 p-8 transition-colors hover:border-accent/40"
+              className="group relative flex h-full flex-col overflow-hidden rounded-4xl border border-line bg-surface/60 p-6 sm:p-8 transition-colors hover:border-accent/40"
             >
               <div
                 className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full opacity-25 blur-3xl transition-opacity duration-500 group-hover:opacity-50"
@@ -47,7 +47,7 @@ export function CaseStudies() {
                 <span className="text-xs text-muted">{p.year}</span>
               </div>
 
-              <h3 className="relative mt-6 font-display text-2xl font-bold tracking-tight sm:text-3xl">
+              <h3 className="relative mt-5 font-display text-xl font-bold tracking-tight sm:mt-6 sm:text-3xl">
                 {p.title}
               </h3>
               <p className="relative mt-1 text-sm font-medium text-muted">

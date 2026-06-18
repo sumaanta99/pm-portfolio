@@ -8,7 +8,12 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    if (prefersReduced) return;
+    const isMobileOrTouch =
+      window.matchMedia("(max-width: 767px)").matches ||
+      window.matchMedia("(pointer: coarse)").matches;
+
+    // Skip Lenis on touch/mobile devices to reduce JS + RAF overhead.
+    if (prefersReduced || isMobileOrTouch) return;
 
     const lenis = new Lenis({
       duration: 1.1,

@@ -24,7 +24,10 @@ export function Projects() {
   );
 
   return (
-    <section id="work" className="relative mx-auto max-w-6xl px-6 py-28 md:py-36">
+    <section
+      id="work"
+      className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24 md:py-32"
+    >
       <SectionHeading
         eyebrow="Selected work"
         title="Shipped products & side bets."
@@ -32,14 +35,14 @@ export function Projects() {
       />
 
       {/* filters */}
-      <div className="mt-10 flex flex-wrap gap-2">
+      <div className="mt-9 flex flex-wrap gap-2 sm:mt-10">
         {filters.map((f) => {
           const isActive = filter === f;
           return (
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className="relative rounded-full px-5 py-2.5 text-sm font-medium transition-colors"
+              className="relative rounded-full px-4 py-2 text-xs font-medium transition-colors sm:px-5 sm:py-2.5 sm:text-sm"
             >
               <span className={isActive ? "text-white" : "text-muted hover:text-ink"}>
                 {f}
@@ -63,7 +66,7 @@ export function Projects() {
       <LayoutGroup>
         <motion.div
           layout
-          className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-9 grid gap-5 sm:mt-10 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           <AnimatePresence mode="popLayout">
             {visible.map((p) => (

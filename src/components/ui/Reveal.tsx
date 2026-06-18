@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
@@ -27,13 +27,28 @@ export function Reveal({
   once?: boolean;
 }) {
   const reduce = useReducedMotion();
+  const [reduceOnMobile, setReduceOnMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px), (pointer: coarse)");
+    const apply = () => setReduceOnMobile(media.matches);
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
+
+  const shouldReduce = reduce || reduceOnMobile;
   const variants: Variants = {
-    hidden: reduce ? { opacity: 0 } : { opacity: 0, ...offset[direction] },
+    hidden: shouldReduce ? { opacity: 0 } : { opacity: 0, ...offset[direction] },
     show: {
       opacity: 1,
       x: 0,
       y: 0,
-      transition: { duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] },
+      transition: {
+        duration: shouldReduce ? 0.3 : 0.7,
+        delay,
+        ease: [0.21, 0.47, 0.32, 0.98],
+      },
     },
   };
 
