@@ -403,11 +403,74 @@ export const tools = [
   "SQL",
 ];
 
+// "On My Shelf" — manually curated. Add a cover image URL (or a path to a file
+// in /public, e.g. "/books/atomic-habits.jpg"). Leave `cover` empty to fall
+// back to a clean title tile.
+export type ShelfBook = {
+  title: string;
+  author?: string;
+  cover?: string;
+};
+
+export const shelfBooks: ShelfBook[] = [
+  {
+    title: "Range",
+    author: "David Epstein",
+    cover: "https://covers.openlibrary.org/b/isbn/9780735214484-L.jpg",
+  },
+  {
+    title: "Mother Mary Comes to Me",
+    author: "Arundhati Roy",
+    cover: "https://covers.openlibrary.org/b/id/14981460-L.jpg",
+  },
+  {
+    title: "Children of Time",
+    author: "Adrian Tchaikovsky",
+    cover: "https://covers.openlibrary.org/b/isbn/9781447273301-L.jpg",
+  },
+  {
+    title: "Children of Ruin",
+    author: "Adrian Tchaikovsky",
+    cover: "https://covers.openlibrary.org/b/isbn/9781509865857-L.jpg",
+  },
+  {
+    title: "The Museum of Innocence",
+    author: "Orhan Pamuk",
+    cover: "https://covers.openlibrary.org/b/isbn/9780307386243-L.jpg",
+  },
+  {
+    title: "Tuesdays with Morrie",
+    author: "Mitch Albom",
+    cover: "https://covers.openlibrary.org/b/isbn/9780767905923-L.jpg",
+  },
+  {
+    title: "Lolita",
+    author: "Vladimir Nabokov",
+    cover: "https://covers.openlibrary.org/b/isbn/9780679723165-L.jpg",
+  },
+  {
+    title: "The Gene",
+    author: "Siddhartha Mukherjee",
+    cover: "https://covers.openlibrary.org/b/id/11320163-L.jpg",
+  },
+  {
+    title: "Dark Places",
+    author: "Gillian Flynn",
+    cover: "https://covers.openlibrary.org/b/id/5728115-L.jpg",
+  },
+  {
+    title: "Human Acts",
+    author: "Han Kang",
+    cover: "https://covers.openlibrary.org/b/id/8047485-L.jpg",
+  },
+];
+
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Work", href: "#work" },
   { label: "Case Studies", href: "#case-studies" },
   { label: "Blog", href: "#blog" },
   { label: "Skills", href: "#skills" },
+  { label: "Shelf", href: "#shelf" },
   { label: "Contact", href: "#contact" },
 ];

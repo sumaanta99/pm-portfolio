@@ -18,16 +18,16 @@ export function Blog() {
       />
 
       <Reveal direction="up" delay={0.1}>
-        <div className="group relative mt-9 overflow-hidden rounded-4xl border border-line bg-surface/60 p-6 sm:mt-10 sm:p-10">
+        <div className="group relative mt-9 overflow-hidden rounded-3xl border border-line bg-surface/60 p-5 sm:mt-10 sm:rounded-4xl sm:p-10">
           <div className="pointer-events-none absolute -right-10 -top-12 h-44 w-44 rounded-full bg-accent/15 blur-3xl transition-transform duration-700 group-hover:scale-125" />
           <div className="pointer-events-none absolute -bottom-14 -left-10 h-44 w-44 rounded-full bg-accent2/15 blur-3xl transition-transform duration-700 group-hover:scale-125" />
 
           <div className="relative flex flex-col gap-6 sm:gap-8 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.18em] text-muted">
+              <p className="text-xs uppercase tracking-[0.16em] text-muted sm:text-sm sm:tracking-[0.18em]">
                 Medium profile
               </p>
-              <p className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+              <p className="mt-2 break-all font-display text-xl font-semibold tracking-tight sm:break-normal sm:text-3xl">
                 @sumaantamunde
               </p>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
