@@ -44,6 +44,48 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+.app-shell {
+  opacity: 0;
+  transition: opacity 380ms ease;
+}
+
+.app-shell-ready {
+  opacity: 1;
+}
+
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: rgb(var(--bg));
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 280ms ease, visibility 280ms ease;
+}
+
+.app-loader-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.app-loader-spinner {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 3px solid rgb(var(--line));
+  border-top-color: rgb(var(--accent));
+  animation: app-loader-spin 0.85s linear infinite;
+}
+
+@keyframes app-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Lenis */
 html.lenis,
 html.lenis body {
@@ -135,5 +177,14 @@ html.lenis body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .app-shell,
+  .app-loader {
+    transition: none !important;
+  }
+
+  .app-loader-spinner {
+    animation: none !important;
   }
 }

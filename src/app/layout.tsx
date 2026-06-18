@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
+import { LoadingGate } from "@/components/providers/LoadingGate";
 import { profile } from "@/lib/data";
 
 const inter = Inter({
@@ -88,7 +89,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ThemeProvider>
-          <SmoothScroll>{children}</SmoothScroll>
+          <LoadingGate>
+            <SmoothScroll>{children}</SmoothScroll>
+          </LoadingGate>
         </ThemeProvider>
         <Analytics />
       </body>
