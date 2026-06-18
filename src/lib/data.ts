@@ -130,13 +130,37 @@ export const projects: Project[] = [
       { value: 3, label: "Top post-launch features" },
     ],
     problem:
-      "Build a secure messaging platform that could pull habitual users off WhatsApp and Signal — with no critical launch failures and a credible privacy story.",
+      "Build a secure messaging platform that could pull habitual users off WhatsApp and Signal with no critical launch failures and a credible privacy story.",
     research:
       "Ran a 30-person research cohort and a structured feedback loop to surface communication friction. Identified that professionals needed to separate work and personal chats, and that voice, multimedia and contact sharing were table-stakes for retention.",
     solution:
       "Wrote PRDs and MVP specs for core messaging (personal, group, multi-select chat). Drove voice notes, multimedia & contact sharing from discovery to launch, and shipped folder creation / chat organization. Built an invite/referral growth loop and a priority-based UI bug reporting system for the eng team.",
     impact:
       "Scaled to 14,000+ active users with personal chat sustaining 3,000+ messages/day. Three of the discovery-driven features became the top post-launch features. Zero critical launch failures.",
+  },
+  {
+    id: "port-product",
+    title: "Port",
+    subtitle: "Secure messaging platform · 0→1",
+    category: "Product Work",
+    year: "2023–25",
+    accent: "124 108 255",
+    summary:
+      "Joined pre-launch and owned end-to-end product definition and delivery of a secure messaging platform on Android & iOS, scaling to 14,000+ active users with zero critical launch failures.",
+    tags: ["0→1", "Consumer", "Mobile", "Messaging"],
+    metrics: [
+      { value: 14000, suffix: "+", label: "Active users" },
+      { value: 3000, suffix: "+", label: "Msgs/day (personal)" },
+      { value: 3, label: "Top post-launch features" },
+    ],
+    problem:
+      "Build and launch a secure messaging platform that could pull habitual users off WhatsApp and Signal shipping 0→1 on Android & iOS with no critical launch failures.",
+    research:
+      "Ran a 30-person research cohort and a structured user-feedback loop to surface communication friction. Found professionals needed to separate work and personal chats, and that voice notes, multimedia and contact sharing were table-stakes for retention.",
+    solution:
+      "Wrote PRDs and MVP specs for core messaging (personal, group, multi-select chat). Drove voice notes, multimedia and contact sharing from discovery to launch, shipped folder creation / chat organization, and built an invite/referral growth loop plus targeted marketing. Established a priority-based UI bug reporting system giving the eng team structured severity/impact visibility.",
+    impact:
+      "Scaled to 14,000+ active users with personal chat sustaining 3,000+ messages/day, notable for a 0→1 app. Three discovery-driven features became the top post-launch features, critical bugs were resolved through the new reporting system, and there were zero critical launch failures.",
   },
   {
     id: "mosaic",
