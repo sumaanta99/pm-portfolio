@@ -29,6 +29,7 @@ const word = {
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  const [reduceOnMobile, setReduceOnMobile] = useState(false);
   const [showScene, setShowScene] = useState(false);
 
   useEffect(() => {
@@ -38,11 +39,20 @@ export function Hero() {
     media.addEventListener("change", apply);
     return () => media.removeEventListener("change", apply);
   }, []);
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px), (pointer: coarse)");
+    const apply = () => setReduceOnMobile(media.matches);
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
+
+  const lightweightMode = reduce || reduceOnMobile;
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 180]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, lightweightMode ? 0 : 180]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const sceneScale = useTransform(scrollYProgress, [0, 1], [1, 1.25]);
 

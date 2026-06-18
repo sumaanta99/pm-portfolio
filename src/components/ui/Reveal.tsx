@@ -38,17 +38,17 @@ export function Reveal({
   }, []);
 
   const shouldReduce = reduce || reduceOnMobile;
+  if (shouldReduce) {
+    return <div className={className}>{children}</div>;
+  }
+
   const variants: Variants = {
-    hidden: shouldReduce ? { opacity: 0 } : { opacity: 0, ...offset[direction] },
+    hidden: { opacity: 0, ...offset[direction] },
     show: {
       opacity: 1,
       x: 0,
       y: 0,
-      transition: {
-        duration: shouldReduce ? 0.3 : 0.7,
-        delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
-      },
+      transition: { duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] },
     },
   };
 
@@ -88,6 +88,21 @@ export function StaggerGroup({
   className?: string;
   once?: boolean;
 }) {
+  const reduce = useReducedMotion();
+  const [reduceOnMobile, setReduceOnMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px), (pointer: coarse)");
+    const apply = () => setReduceOnMobile(media.matches);
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
+
+  if (reduce || reduceOnMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={className}
