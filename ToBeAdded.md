@@ -1,0 +1,5 @@
+-> book shelf 
+-> travel 
+-> medium blog ->done
+-> food i've eaten/cooked
+-> seperate section for side business
