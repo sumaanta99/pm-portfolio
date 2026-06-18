@@ -116,6 +116,8 @@ export function Hero() {
             <br />
             Product manager, software engineer, national powerlifting athlete and a
             home cook.
+            <br />
+            tl;dr I&apos;m cool as fuck, work with me.
           </motion.p>
 
           <motion.div
