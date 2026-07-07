@@ -9,9 +9,9 @@ import { Reveal, StaggerGroup, staggerItem } from "@/components/ui/Reveal";
 import { useMobileLightweight } from "@/hooks/useMobileLightweight";
 
 const highlights = [
-  { value: "4.5 yrs", label: "Eng-led product" },
+  { value: "4.5 yrs", label: "Build & ship" },
   { value: "3", label: "Domains: B2C · SaaS · Logistics" },
-  { value: "0→1", label: "Builder mindset" },
+  { value: "0→1", label: "Engineer → product" },
 ];
 
 export function About() {
@@ -32,7 +32,7 @@ export function About() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading
             eyebrow="About me"
-            title="Product thinking, built with engineering depth."
+            title="Engineering first. Product judgment built in."
             description={profile.summary}
           />
 

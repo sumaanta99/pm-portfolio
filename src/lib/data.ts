@@ -1,13 +1,13 @@
 export const profile = {
   name: "Sumaanta Munde",
-  role: "Product Manager",
-  tagline: "From Founding Engineer to PM",
+  role: "Software Engineer",
+  tagline: "Builds products people use",
   email: "sumaantamunde@gmail.com",
   phone: "+91 9550614763",
   location: "Bangalore, India",
   education: "CSE — NIT Warangal '22",
   summary:
-    "I'm a product manager with a software engineering background and a passion for building user-centric software. I turn fuzzy problems into clear product bets and ship experiences that feel simple, useful, and loved.",
+    "I'm a software engineer who thinks in product — I write code, shape bets, and ship experiences that feel simple, useful, and loved. Engineering depth with product judgment, from prototype to production.",
   socials: {
     linkedin: "https://www.linkedin.com/in/sumaanta-munde-97a751157/",
     github: "https://github.com/sumaanta99",
@@ -222,6 +222,32 @@ export const projects: Project[] = [
       "Cut shipment processing time 32% and unblocked dock supervisor & worker onboarding. Aligned engineering, QA and business async across 16+ design docs, cutting component debt.",
   },
   {
+    id: "hippo",
+    title: "hippo",
+    subtitle: "AI memory assistant · Side project",
+    category: "Side Projects",
+    year: "2026",
+    status: "Live",
+    accent: "96 140 168",
+    summary:
+      "A natural-language memory assistant for work and life — follow-ups, meeting notes, where you put things, and everything in between. No folders, tags, or commands. Just talk.",
+    tags: ["AI", "0→1", "LLM", "Product-led"],
+    metrics: [
+      { value: 2, label: "Shipped surfaces" },
+      { value: 4, label: "Channels planned" },
+      { value: 0, label: "Folders required" },
+    ],
+    links: [{ label: "Try hippo", href: "https://hippostudio.netlify.app/" }],
+    problem:
+      "People lose track of life's loose ends — where they kept their passport, a follow-up for a colleague, a phone number, a shopping list — and existing note apps demand structure before they help.",
+    research:
+      "Validated that retrieval friction (folders, tags, search syntax) kills capture habit. Users want to talk naturally and recall instantly across work and personal contexts.",
+    solution:
+      "Built hippo as a memory assistant with CLI and an interactive web terminal — natural-language capture and recall with persistent session memory, no organizational overhead.",
+    impact:
+      "Live product with CLI and web terminal shipped; WhatsApp, voice notes, and photo memories on the roadmap.",
+  },
+  {
     id: "mewsly",
     title: "Mewsly",
     subtitle: "Home cat boarding · Live business",
@@ -337,6 +363,22 @@ export const projects: Project[] = [
       "A working, privacy-conscious extension across four major platforms with zero end-user configuration.",
   },
 ];
+
+export const hippoSpotlight = {
+  title: "hippo",
+  tagline: "Everything you forget, remembered.",
+  description:
+    "A memory assistant for work and life — follow-ups, meeting notes, where you put things, and everything in between. No folders, tags, or commands.",
+  href: "https://hippostudio.netlify.app/",
+  status: "Live",
+  roadmap: [
+    { label: "CLI", done: true },
+    { label: "Web Terminal", done: true },
+    { label: "WhatsApp", done: false },
+    { label: "Voice Notes", done: false },
+  ],
+  tech: ["Python", "FastAPI", "OpenAI", "Next.js", "TypeScript"],
+};
 
 export const timeline = [
   {

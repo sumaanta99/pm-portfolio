@@ -53,7 +53,7 @@ export function Hero() {
     <section
       id="top"
       ref={ref}
-      className="relative flex min-h-[100svh] items-start overflow-hidden py-24 sm:items-center sm:py-0"
+      className="relative flex min-h-0 items-start overflow-x-clip py-24 sm:min-h-[100svh] sm:items-center sm:py-0"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-1/3 hidden h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px] md:block" />
@@ -66,25 +66,7 @@ export function Hero() {
         style={lightweightMode ? undefined : { y, opacity }}
         className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,30rem)] lg:gap-14"
       >
-        <div className="max-w-2xl">
-          <motion.span
-            initial={{ opacity: 0, y: lightweightMode ? 0 : 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: lightweightMode ? 0 : 0.15,
-              duration: lightweightMode ? 0.3 : 0.6,
-            }}
-            className="mb-4 mt-6 inline-flex items-center gap-2 rounded-full border border-line bg-surface/90 px-3.5 py-2 text-[11px] font-medium tracking-wide text-muted sm:mb-6 sm:mt-20 sm:bg-surface/40 sm:px-4 sm:text-xs sm:backdrop-blur"
-          >
-            <span className="relative flex h-2 w-2">
-              {!lightweightMode && (
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent2 opacity-75" />
-              )}
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent2" />
-            </span>
-            {profile.tagline}
-          </motion.span>
-
+        <div className="max-w-2xl lg:col-start-1 lg:row-start-1">
           <motion.h1
             variants={headlineContainer}
             initial="hidden"
@@ -112,10 +94,10 @@ export function Hero() {
             }}
             className="mt-5 max-w-xl text-sm leading-relaxed text-muted sm:mt-7 sm:text-lg"
           >
-            Hi, I&apos;m Sumaanta Munde. 👋
+            Hi, I&apos;m {profile.name}. 👋
             <br />
-            Product manager, software engineer, national powerlifting athlete and a
-            home cook.
+            Software engineer with a keen eye for product sense. National powerlifting athlete
+            and home cook.
             <br />
           </motion.p>
 
@@ -147,7 +129,7 @@ export function Hero() {
         </div>
 
         {!lightweightMode && (
-          <div className="relative hidden lg:block">
+          <div className="relative hidden lg:col-start-2 lg:row-start-1 lg:block">
             <HeroScene />
           </div>
         )}
